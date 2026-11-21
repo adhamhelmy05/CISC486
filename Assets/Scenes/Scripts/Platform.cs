@@ -7,28 +7,23 @@ public class Platform : MonoBehaviour
     // Registry of every active platform.
     public static readonly List<Platform> All = new List<Platform>();
 
-    private Renderer[] platformRenderers;
-    private bool hasTurnedBlack = false;
+    // Tracks how many platforms have changed colour.
+    public static int ChangedCount = 0;
 
-    // Number of platforms that have changed color.
-    public static int ChangedCount { get; private set; } = 0;
+    // Whether this platform should count toward the total.
+    public bool CountAsRegularTile = true;
+
+    private bool hasChanged = false;
 
     void OnEnable()
     {
-        if (!All.Contains(this))
-            All.Add(this);
+        All.Add(this);
     }
 
     void OnDisable()
     {
         All.Remove(this);
     }
-
-    void Awake()
-    {
-        platformRenderers = GetComponentsInChildren<Renderer>();
-    }
-    
 
     // Center of the top face, in world space.
     public Vector3 TopCenter
@@ -49,37 +44,37 @@ public class Platform : MonoBehaviour
         }
     }
 
-    // Change this platform to black only once.
+    // Turns the platform black when touched.
     public void TurnBlack()
     {
-        if (hasTurnedBlack)
+        if (hasChanged)
             return;
 
-        hasTurnedBlack = true;
-        ChangedCount++;
+        hasChanged = true;
 
-        if (platformRenderers == null)
-            platformRenderers = GetComponentsInChildren<Renderer>();
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
-        foreach (Renderer rend in platformRenderers)
+        foreach (Renderer rend in renderers)
         {
-            foreach (Material mat in rend.materials)
-            {
-                if (mat.HasProperty("_BaseColor"))
-                    mat.SetColor("_BaseColor", Color.black);
-                else if (mat.HasProperty("_Color"))
-                    mat.color = Color.black;
-            }
+            rend.material.color = Color.black;
         }
 
-        Debug.Log("Tiles changed: " + ChangedCount);
+        if (CountAsRegularTile)
+        {
+            ChangedCount++;
+        }
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetCounters()
+    // Resets the changed tile counter.
+    public static void ResetChangedCount()
     {
-      ChangedCount = 0;
-      All.Clear();
+        ChangedCount = 0;
+
+        foreach (Platform platform in All)
+        {
+            if (platform != null)
+                platform.hasChanged = false;
+        }
     }
 
 #if UNITY_EDITOR

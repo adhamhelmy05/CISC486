@@ -21,10 +21,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkyBoxMat
-  m_Shader: {fileID: 4800000, guid: ed75a6693e2042a4fad1085e6b4f6f14, type: 3}
+  m_Shader: {fileID: 4800000, guid: 97bd0017fd2bb04438048de497581c8a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SCREENSPACE
   m_InvalidKeywords:
   - _MAPPING_LATITUDE_LONGITUDE_LAYOUT
   - _SUNDISK_HIGH_QUALITY
@@ -157,14 +158,14 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rotation: 99
-    - _ScreenSpace: 0
+    - _ScreenSpace: 1
     - _ScreenSpaceReflections: 1
     - _ScreenSpaceReflectionsContributeTransparent: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Softness: 0.3
     - _SpecularHighlights: 1
-    - _Speed: 1.19
+    - _Speed: 0.55
     - _SpinAmount: 2.74
     - _SpinSpeed: 0.01
     - _SrcBlend: 1
@@ -178,14 +179,14 @@ Material:
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
-    - _Zoom: 0.88
+    - _Zoom: 4.8
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Center: {r: -1, g: 0, b: 0, a: 0}
+    - _Center: {r: -0.57, g: 0.02, b: 0.34, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDark: {r: 0.012086802, g: 0.0004177485, b: 0.013476968, a: 1}
-    - _ColorLight: {r: 0.2627451, g: 0.011764713, b: 0.15692239, a: 1}
-    - _ColorMid: {r: 0.11147148, g: 0.0057867733, b: 0.15902954, a: 1}
+    - _ColorLight: {r: 0.047169685, g: 0.6585087, b: 1, a: 1}
+    - _ColorMid: {r: 0.10553171, g: 0.1645047, b: 0.5633422, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.36899996, g: 0.34899998, b: 0.34099993, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}

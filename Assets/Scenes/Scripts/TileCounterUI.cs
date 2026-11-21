@@ -14,7 +14,9 @@ public class TileCounterUI : MonoBehaviour
 
     void Update()
     {
-        int total = Platform.All.Count;
+        int total = Platform.All.FindAll(
+            p => p != null && p.CountAsRegularTile
+        ).Count;
         int changed = Platform.ChangedCount;
 
         if (counterText != null)

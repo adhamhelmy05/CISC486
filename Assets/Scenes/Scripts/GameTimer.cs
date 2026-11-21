@@ -21,6 +21,15 @@ public class GameTimer : MonoBehaviour
     public float Elapsed => elapsed;
     public bool IsRunning => running;
 
+    // Time saved by LevelRestarter just before the level reloads. -1 = nothing saved.
+    static float carriedTime = -1f;
+
+    // Called by LevelRestarter so the time survives a level restart.
+    public static void CarryOverTime(float time) => carriedTime = time;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics() => carriedTime = -1f;
+
     void Start()
     {
         if (timerText == null) timerText = GetComponent<TMP_Text>();
@@ -28,6 +37,15 @@ public class GameTimer : MonoBehaviour
 
         if (player != null) player.Hopped += OnPlayerHopped;
         else Debug.LogWarning("GameTimer: no PlayerHopper found in the scene.");
+
+        // Coming back from a restart: continue from the saved time and keep counting.
+        if (carriedTime >= 0f)
+        {
+            elapsed = carriedTime;
+            carriedTime = -1f;
+            hasStarted = true;
+            running = true;
+        }
 
         UpdateText();
     }

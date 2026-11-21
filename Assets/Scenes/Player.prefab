@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 7398068390750311891}
   - component: {fileID: 6272527569650950613}
   - component: {fileID: 6897252902963161488}
+  - component: {fileID: -6878562320687213588}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -177,3 +178,16 @@ MonoBehaviour:
   searchConeAngle: 45
   cameraRelative: 1
   cameraTransform: {fileID: 0}
+--- !u!114 &-6878562320687213588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6700663153180668995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ae7a40279f1d341b02c0376515ada0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundDetector
+  detectionRadius: 0.25

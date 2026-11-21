@@ -20,6 +20,17 @@ public class GroundDetector : MonoBehaviour
             if (results[i] == null)
                 continue;
 
+            // Check for special tiles first.
+            SpecialTile special =
+                results[i].GetComponentInParent<SpecialTile>();
+
+            if (special != null)
+            {
+                special.Activate();
+                continue;
+            }
+
+            // Otherwise, treat it as a regular platform.
             Platform platform =
                 results[i].GetComponentInParent<Platform>();
 
